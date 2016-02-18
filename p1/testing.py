@@ -7,6 +7,7 @@ import datasets
 import dumbClassifiers
 import runClassifier
 import knn
+import dt
 """
 h = dumbClassifiers.AlwaysPredictOne({})
 print h
@@ -45,6 +46,7 @@ print Y[X[:,0] > 0]
 print util.mode(Y[X[:,0] > 0])
 """
 
+"""
 runClassifier.trainTestSet(knn.KNN({'isKNN': True, 'K': 1}), datasets.TennisData)
 runClassifier.trainTestSet(knn.KNN({'isKNN': True, 'K': 3}), datasets.TennisData)
 runClassifier.trainTestSet(knn.KNN({'isKNN': True, 'K': 5}), datasets.TennisData)
@@ -52,4 +54,8 @@ runClassifier.trainTestSet(knn.KNN({'isKNN': True, 'K': 5}), datasets.TennisData
 runClassifier.trainTestSet(knn.KNN({'isKNN': False, 'eps': 0.5}), datasets.TennisData)
 runClassifier.trainTestSet(knn.KNN({'isKNN': False, 'eps': 1.0}), datasets.TennisData)
 runClassifier.trainTestSet(knn.KNN({'isKNN': False, 'eps': 2.0}), datasets.TennisData)
+"""
 
+runClassifier.trainTestSet(dt.DT({'maxDepth': 1}), datasets.SentimentData)
+runClassifier.trainTestSet(dt.DT({'maxDepth': 3}), datasets.SentimentData)
+runClassifier.trainTestSet(dt.DT({'maxDepth': 5}), datasets.SentimentData)
