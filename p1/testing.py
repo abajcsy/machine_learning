@@ -7,6 +7,7 @@ import datasets
 import dumbClassifiers
 import runClassifier
 import knn
+import perceptron
 """
 h = dumbClassifiers.AlwaysPredictOne({})
 print h
@@ -44,7 +45,7 @@ print Y
 print Y[X[:,0] > 0]
 print util.mode(Y[X[:,0] > 0])
 """
-
+"""
 runClassifier.trainTestSet(knn.KNN({'isKNN': True, 'K': 1}), datasets.TennisData)
 runClassifier.trainTestSet(knn.KNN({'isKNN': True, 'K': 3}), datasets.TennisData)
 runClassifier.trainTestSet(knn.KNN({'isKNN': True, 'K': 5}), datasets.TennisData)
@@ -52,4 +53,34 @@ runClassifier.trainTestSet(knn.KNN({'isKNN': True, 'K': 5}), datasets.TennisData
 runClassifier.trainTestSet(knn.KNN({'isKNN': False, 'eps': 0.5}), datasets.TennisData)
 runClassifier.trainTestSet(knn.KNN({'isKNN': False, 'eps': 1.0}), datasets.TennisData)
 runClassifier.trainTestSet(knn.KNN({'isKNN': False, 'eps': 2.0}), datasets.TennisData)
+"""
+
+runClassifier.trainTestSet(perceptron.Perceptron({'numEpoch': 1}), datasets.TennisData)
+runClassifier.trainTestSet(perceptron.Perceptron({'numEpoch': 2}), datasets.TennisData)
+
+print '\n'
+
+runClassifier.trainTestSet(perceptron.Perceptron({'numEpoch': 200}), datasets.TwoDDiagonal)
+
+print '\n'
+
+runClassifier.trainTestSet(perceptron.Perceptron({'numEpoch': 1}), datasets.SentimentData)
+runClassifier.trainTestSet(perceptron.Perceptron({'numEpoch': 2}), datasets.SentimentData)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

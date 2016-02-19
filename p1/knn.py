@@ -68,11 +68,16 @@ class KNN(BinaryClassifier):
 
 			norms = linalg.norm(self.trX-X, axis=1)
 			sortedIndices = argsort(norms)
-
-			for i in range(0, K):
+			
+			i = 0
+			sz = self.trY.size
+			
+			while i < K and i < sz:
 				val += self.trY[sortedIndices[i]]
-
+				i += 1
+				
 			return val
+			
 		else:
 			# this is an epsilon ball model
 			eps = self.opts['eps']     # how big is our epsilon ball

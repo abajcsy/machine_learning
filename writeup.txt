@@ -1,10 +1,24 @@
 Warming up to Classifiers
 1. WU1: why is this computation equivalent to computing classification accuracy?
 
+The classification accuracy 
+	= 1/N * \sum_{k=1}^{N} [ datasets.TennisData.Y(k) == h.predictAll(datasets.TennisData.X)(k) ]
+	= mean ( datasets.TennisData.Y == h.predictAll(datasets.TennisData.X) )
+	
+datasets.TennisData.Y > 0 converts all of the negative labels to 0 and keeps the positive labels
+at 1. Call this new array a. Similarly, h.predictAll(datasets.TennisData.X) > 0) converts all of
+the predicted negative labels to 0 and keeps the predicted positive labels at 1. Denote this array
+as b.
+
+a == b is exactly the same array as datasets.TennisData.Y == h.predictAll(datasets.TennisData.X),
+so the computations are equivalent.
+
+
 Decision Trees
 1. WU2: We should see training accuracy (roughly) going down and test accuracy (roughly) going up. Why does training accuracy tend to go down? Why is test accuracy not monotonically increasing? You should also see jaggedness in the test curve toward the left. Why?
 
 2. WU3: You should see training accuracy monotonically increasing and test accuracy making something like a hill. Which of these is guaranteed to happen a which is just something we might expect to happen? Why?
+
 
 Nearest Neighbors
 1. WU4: For the digits data, generate train/test curves for varying values of K and epsilon (you figure out what are good ranges, this time). Include those curves: do you see evidence of overfitting and underfitting? Next, using K=5, generate learning curves for this data.
