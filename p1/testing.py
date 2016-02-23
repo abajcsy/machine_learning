@@ -69,22 +69,7 @@ runClassifier.trainTestSet(perceptron.Perceptron({'numEpoch': 1}), datasets.Sent
 runClassifier.trainTestSet(perceptron.Perceptron({'numEpoch': 2}), datasets.SentimentData)
 """
 
-runClassifier.trainTestSet(dt.DT({'maxDepth': 5}), datasets.SentimentData)
-'''
-h = dt.DT({'maxDepth': 5})
-h.train(datasets.TennisData.X, datasets.TennisData.Y)
-print h
-'''
-
-
-
-
-
-
-
-
-
-
-
+curve = runClassifier.hyperparamCurveSet(dt.DT({}), 'maxDepth', [1,2,4,6,8,12,16], datasets.SentimentData)
+runClassifier.plotCurve('DT on Sentiment Data (hyperparameter)', curve)
 
 

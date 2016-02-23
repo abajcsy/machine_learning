@@ -15,9 +15,16 @@ so the computations are equivalent.
 
 
 Decision Trees
-1. WU2: We should see training accuracy (roughly) going down and test accuracy (roughly) going up. Why does training accuracy tend to go down? Why is test accuracy not monotonically increasing? You should also see jaggedness in the test curve toward the left. Why?
+1. WU2: We should see training accuracy (roughly) going down and test accuracy (roughly) going up. 
+Why does training accuracy tend to go down? 
+--> As you increase the number of input data points while keeping the same tree height, there is a higher likelihood of misclassifying new data points.
+Why is test accuracy not monotonically increasing? 
+--> The test accuracy is not monotonically increasing because the initially small samples of data are not sufficient to allow inference to the real data distribution. At a certain point during testing, the number of datapoints allows for a sufficiently accurate representation of the real data. 
+You should also see jaggedness in the test curve toward the left. Why?
+--> The ability of a small data sample to sufficiently represent the distribution is more unreliable than a large sample. This is represented by the initial jaggedness in the test curve during the first few small samples. 
 
-2. WU3: You should see training accuracy monotonically increasing and test accuracy making something like a hill. Which of these is guaranteed to happen a which is just something we might expect to happen? Why?
+2. WU3: You should see training accuracy monotonically increasing and test accuracy making something like a hill. Which of these is guaranteed to happen and which is just something we might expect to happen? Why?
+--> We are guaranteed to see training accuracy monotonically increasing as the tree gets deeper because we are considering more features to partition the data. On the other hand, we expect that test accuracy will increase and then start to decrease in a hill-like fashion due to overfitting.  
 
 
 Nearest Neighbors
