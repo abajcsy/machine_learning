@@ -8,6 +8,7 @@ import dumbClassifiers
 import runClassifier
 import knn
 import perceptron
+import dt
 """
 h = dumbClassifiers.AlwaysPredictOne({})
 print h
@@ -53,7 +54,7 @@ runClassifier.trainTestSet(knn.KNN({'isKNN': True, 'K': 5}), datasets.TennisData
 runClassifier.trainTestSet(knn.KNN({'isKNN': False, 'eps': 0.5}), datasets.TennisData)
 runClassifier.trainTestSet(knn.KNN({'isKNN': False, 'eps': 1.0}), datasets.TennisData)
 runClassifier.trainTestSet(knn.KNN({'isKNN': False, 'eps': 2.0}), datasets.TennisData)
-"""
+
 
 runClassifier.trainTestSet(perceptron.Perceptron({'numEpoch': 1}), datasets.TennisData)
 runClassifier.trainTestSet(perceptron.Perceptron({'numEpoch': 2}), datasets.TennisData)
@@ -66,11 +67,14 @@ print '\n'
 
 runClassifier.trainTestSet(perceptron.Perceptron({'numEpoch': 1}), datasets.SentimentData)
 runClassifier.trainTestSet(perceptron.Perceptron({'numEpoch': 2}), datasets.SentimentData)
+"""
 
-
-
-
-
+runClassifier.trainTestSet(dt.DT({'maxDepth': 5}), datasets.SentimentData)
+'''
+h = dt.DT({'maxDepth': 5})
+h.train(datasets.TennisData.X, datasets.TennisData.Y)
+print h
+'''
 
 
 

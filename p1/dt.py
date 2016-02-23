@@ -64,70 +64,70 @@ class DT(BinaryClassifier):
 			branch.
 			"""
 			if self.isLeaf:
-				return self.feature
+				return self.label
 			else:
 				if X[self.feature]<0.5:
-					return self.left(X)
+					return self.left.predict(X)
 				else:
-					return self.right(X)
+					return self.right.predict(X)
+
     def trainDT(self, X, Y, maxDepth, used):
-        """
-        recursively build the decision tree
-        """
+			"""
+			recursively build the decision tree
+			"""
 
-        # get the size of the data set
-        N,D = X.shape
-        # check to see if we're either out of depth or no longer
-        # have any decisions to make
-        if maxDepth <= 0 or len(util.uniq(Y)) <= 1:
-            # we'd better end at this point.  need to figure
-            # out the label to return
-            self.isLeaf = True
-            self.label  = util.mode(Y)
+			# get the size of the data set
+			N,D = X.shape
+			# check to see if we're either out of depth or no longer
+			# have any decisions to make
+			if maxDepth <= 0 or len(util.uniq(Y)) <= 1:
+					# we'd better end at this point.  need to figure
+					# out the label to return
+					self.isLeaf = True
+					self.label  = util.mode(Y)
 
-        else:
-            # we need to find a feature to split on
-            bestFeature = -1     # which feature has lowest error
-            bestError   = N      # the number of errors for this feature
-            for d in range(D):
-							# have we used this feature yet
-							if d in used:
-									continue
+			else:
+					# we need to find a feature to split on
+					bestFeature = -1     # which feature has lowest error
+					bestError   = N      # the number of errors for this feature
+					for d in range(D):
+						# have we used this feature yet
+						if d in used:
+								continue
 
-							# suppose we split on this feature; what labels
-							# would go left and right?
-							leftY  = Y[X[:,d]<0.5]
-							rightY = Y[X[:,d]>=0.5]
+						# suppose we split on this feature; what labels
+						# would go left and right?
+						leftY  = Y[X[:,d]<0.5]
+						rightY = Y[X[:,d]>=0.5]
 
-							# we'll classify the left points as their most
-							# common class and ditto right points.  our error
-							# is the how many are not their mode.
-							leftMode = util.mode(leftY) 
-							rightMode = util.mode(rightY) 
+						# we'll classify the left points as their most
+						# common class and ditto right points.  our error
+						# is the how many are not their mode.
+						leftMode = util.mode(leftY) 
+						rightMode = util.mode(rightY) 
 
-							error = abs(sum(leftY[leftY>leftMode])) + abs(sum(rightY[rightY<rightMode]))
+						error = sum(leftY!=leftMode) + sum(rightY!=rightMode)
 
-							# check to see if this is a better error rate
-							if error <= bestError:
-									bestFeature = d
-									bestError   = error
+						# check to see if this is a better error rate
+						if error <= bestError:
+								bestFeature = d
+								bestError   = error
 
-            if bestFeature < 0:
-                # this shouldn't happen, but just in case...
-                self.isLeaf = True
-                self.label  = util.mode(Y)
+					if bestFeature < 0:
+						# this shouldn't happen, but just in case...
+						self.isLeaf = True
+						self.label  = util.mode(Y)
 
-            else:
-							self.isLeaf  = False
+					else:
+						self.isLeaf  = False
 
-							self.feature = bestFeature   
-							used.append(bestFeature)
+						self.feature = bestFeature   
 
-							self.left  = DT({'maxDepth': maxDepth-1})
-							self.right = DT({'maxDepth': maxDepth-1})
-							# recurse on our children 
-							self.left.trainDT(self.left, X[X[:,bestFeature]<0.5,:], Y[X[:,bestFeature]<0.5],used) 
-							self.right.trainDT(self.right, X[X[:,bestFeature]>=0.5,:], Y[X[:,bestFeature]>=0.5],used) 
+						self.left  = DT({'maxDepth': maxDepth-1})
+						self.right = DT({'maxDepth': maxDepth-1})
+						# recurse on our children 
+						self.left.trainDT(X[X[:,bestFeature]<0.5,:], Y[X[:,bestFeature]<0.5], maxDepth-1, [used,bestFeature]) 
+						self.right.trainDT(X[X[:,bestFeature]>=0.5,:], Y[X[:,bestFeature]>=0.5], maxDepth-1, [used,bestFeature]) 
 
     def train(self, X, Y):
         """
