@@ -50,7 +50,7 @@ Bins = arange(0, 1, 0.02)
 
 plt.xlabel('distance / sqrt(dimensionality)')
 plt.ylabel('# of pairs of points at that distance')
-plt.title('dimensionality versus uniform point distances')
+plt.title('Dimensionality versus uniform point distances')
 
 for i,d in enumerate(D) :
 	ind = arange(0,784)

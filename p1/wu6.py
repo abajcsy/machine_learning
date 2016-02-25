@@ -16,14 +16,13 @@ def plotCurve(titleString, res):
     xlabel('# of training points')
     ylabel('Accuracy')
     title(titleString)
-    show() 
     
 # A - learning curve with 5 epochs    
 
 (dataSizes, trainAcc, testAcc) = runClassifier.learningCurveSet(perceptron.Perceptron({'numEpoch': 5}), datasets.SentimentData)
 plotCurve("Learning Curve for Perceptron", [dataSizes, trainAcc, testAcc])
 savefig("LC_perceptron.png")
-
+close()
 
 
 # B - number of epochs vs train/test accuracy
@@ -68,6 +67,7 @@ for i in epochs :
 	trainAcc.append([trAcc])
 	testAcc.append([teAcc])
 	
-plotCurve("Effect of number of epochs on train/test accuracy", [epochs, trainAcc, testAcc])
+plotCurve("Train/test accuracy vs. number of epochs", [epochs, trainAcc, testAcc])
+xlabel('# of epochs')
 savefig("Epochs_train_test.png") 
 	
