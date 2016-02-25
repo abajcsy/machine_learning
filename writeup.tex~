@@ -74,11 +74,8 @@
 		the other hand, we expect that test accuracy will increase and then start to decrease in
 		a hill-like fashion due to overfitting. 
 	
-	\item[\textbf{WU4}] Overfitting does not appear to occur for the values of $K$ tested. 
-		Therfore, underfitting is occuring the entire time. However, for $\epsilon \geq 10$,
-		overfitting occurs. For $\epsilon = 10$, overfitting occurs after about 50 samples, as
-		the test accuracy decreases. For $\epsilon = 15, 20$, an even sharper decrease in test
-		accuracy occurs after about 10 samples.
+	\item[\textbf{WU4}] There does not appear to be any evidence of overfitting because the test
+		accuracy is increasing as the sample size increases.
 		
 		All figures appear at the end of the document. The train/test curves for various $K$
 		values are shown first in Figure \ref{k_figs}, followed the train/test curves for various
