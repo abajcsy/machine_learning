@@ -35,7 +35,7 @@
 		\end{alltt}
 	
 		\verb|datasets.TennisData.Y ==  h.predictAll(datasets.TennisData.X)| produces an array
-		that consists of a 1 at the indices the array agree and a 0 elsewhere. The arrays agree
+		that consists of a 1 at the indices the arrays agree and a 0 elsewhere. The arrays agree
 		only when the test label matches the prediction.
 	
 		\verb|datasets.TennisData.Y > 0| converts all of the negative labels to 0 and keeps the 
@@ -59,9 +59,9 @@
 		data are not sufficient to allow inference to the real data distribution. At a certain
 		point during testing, the number of data points allows for a sufficiently accurate
 		representation of the real data. In other words, the tree is unable to generalize
-		from such a small sample size at first. Then, the sample size reaches a threshhold
+		from such a small sample size at first. Then, the sample size reaches a threshold
 		that closely matches the true data distribution. Larger samples closely match the relative
-		composition of this threshhold sample size. \\
+		composition of this threshold sample size. \\
 		
 		The jaggedness arises from the inability of a small data sample to sufficiently represent
 		the true data distribution compared to a large sample. Some small samples, by chance, may
@@ -74,26 +74,23 @@
 		the other hand, we expect that test accuracy will increase and then start to decrease in
 		a hill-like fashion due to overfitting. 
 	
-	\item[\textbf{WU4}] There does not appear to be any evidence of overfitting because the test
-		accuracy is increasing as the sample size increases.
-		
-		All figures appear at the end of the document. The train/test curves for various $K$
-		values are shown first in Figure \ref{k_figs}, followed the train/test curves for various
-		$\epsilon$ in Figure \ref{eps_figs}.
+	\item[\textbf{WU4}] Overfitting does not appear to occur for the values of $K$ tested. This is
+		apparent from the presence of positive slopes for larger sample sizes in Figure \ref{k_figs}.
+		Therefore, underfitting is occurring the entire time. However, for $\epsilon \geq 10$,
+		overfitting occurs. For $\epsilon = 10$, overfitting occurs after about 50 samples, as
+		the test accuracy decreases. For $\epsilon = 15, 20$, an even sharper decrease in test
+		accuracy occurs after about 10 samples. These decreases can be seen in Figure \ref{eps_figs}.
 		
 	\item[\textbf{WU5}] The results almost mimic those for random data. In higher dimensions, the
-		distances between points is more concentrated in a small range, while in lower dimensions,
-		the distances between points is more spread out. The exception here is 2 dimensions. Many
-		of the points are very close to each other with respect to only 2 features (in fact, they
-		are 0 distance apart). This is not necessarily surprising since the two features chosen
-		at random are probably black pixels on most images. 8 dimensions is also more spread out
-		than on random data. One possible explanation is that pixels are not distrubted randomly
-		throughout the image, rather most non-zero pixels are concentrated towards the center
-		of the image. Otherwise, the data behaves as expected.
-		
-		The histogram corresponding to the pairwise distances in all 784 dimensions is in Figure
-		\ref{alldims_fig}, and the subsampled dimension data appears in Figure 
-		\ref{subsample_fig}.
+		distances between points is more concentrated in a small range, as shown in
+		\ref{alldims_fig}. In lower dimensions, the distances between points is more spread out,
+		demonstrated in \ref{subsample_fig}. The exception here is 2 dimensions, shown with the
+		red outline. Many of the points are very close to each other with respect to only 2 features 
+		(in fact, they are 0 distance apart). This is not necessarily surprising since the two features chosen
+		at random are probably black pixels on most images. 8 dimensions, outlined in brown, 
+		is also more spread out than on random data. One possible explanation is that pixels are 
+		not distributed randomly throughout the image, rather most non-zero pixels are concentrated 
+		towards the center of the image. Otherwise, the data behaves as expected.		
 		
 	\item[\textbf{WU6}] The learning curve for the perceptron with 5 epochs is shown in Figure
 		 \ref{lc_percept_fig}. The impact of the number of epochs on train/test accuracy is shown
@@ -176,30 +173,6 @@
 		\caption{Effect of number of epochs on test/train accuracy}
 		\label{epoch_tt_fig}
 	\end{figure}
-	
-%	\begin{figure} [h!]
-%		\begin{subfigure} [h!]{.4\textwidth}
-%
-%			\includegraphics[scale = .45]{initial_1485_400.png}
-%			\caption{Initial data}
-%			\captionsetup{justification=centering}
-%		\end{subfigure}
-%		\hfill
-%		\begin{subfigure}[h!]{.4\textwidth}
-%			
-%			\includegraphics[scale = .45]{rk_stripe_raw_fig.png}
-%			\caption{State at t=10}
-%			\label{stripe_raw}
-%			\captionsetup{justification=centering}
-%		\end{subfigure}
-%		\caption{Schakenberg simulation with $a=.05,$ $b=1.4,$ $e=14.85,$ $\gamma=400$}
-%		\label{Stripe_figs}
-%	\end{figure}
-%	
-%	\FloatBarrier	
-	
-	
-
 	
 \end{document}
 
