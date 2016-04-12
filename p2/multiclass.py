@@ -21,7 +21,7 @@ class OAA:
     def predict(self, X, useZeroOne=False):
         vote = zeros((self.K,))
         for k in range(self.K):
-            probs = self.f[k].predict_proba(X)
+            probs = self.f[k].predict_proba(X.reshape(1,-1))
             if useZeroOne:
                 vote[k] += 1 if probs[0,1] > 0.5 else 0
             else:
@@ -61,7 +61,7 @@ class AVA:
         vote = zeros((self.K,))
         for i in range(self.K):
             for j in range(i):
-                probs = self.f[i][j].predict_proba(X)
+                probs = self.f[i][j].predict_proba(X.reshape(1,-1))
                 if useZeroOne:
                     p = 1 if probs[0,1] > 0.5 else 0
                     vote[j] += p
@@ -164,28 +164,51 @@ class MCTree:
             n.setNodeInfo(   mkClassifier()  )
 
     def train(self, X, Y):
-        for n in self.tree.iterNodes():
-            if n.isLeaf:   # don't need to do any training on leaves!
-                continue
+		for n in self.tree.iterNodes():
+			if n.isLeaf:   # don't need to do any training on leaves!
+				continue
 
-            # otherwise we're an internal node
-            leftLabels  = list(n.getLeft().iterAllLabels())
-            rightLabels = list(n.getRight().iterAllLabels())
+			# otherwise we're an internal node
+			leftLabels  = list(n.getLeft().iterAllLabels())
+			rightLabels = list(n.getRight().iterAllLabels())
 
-            print 'training classifier for', leftLabels, 'versus', rightLabels
+			#print 'training classifier for', leftLabels, 'versus', rightLabels
 
-            # compute the training data, store in thisX, thisY
-            ### TODO: YOUR CODE HERE
-            util.raiseNotDefined()
+			# compute the training data, store in thisX, thisY
 
-            try:
-                n.getNodeInfo().fit(thisX, thisY) # For sklearn implementations
-            except:
-                n.getNodeInfo().train(thisX, thisY) # For implementations of binary.py
+			numY = len(Y)
+			leftInd = zeros(numY, dtype=bool)
+			rightInd = zeros(numY, dtype=bool)
+			allY = zeros(numY, dtype=int)
+
+			for i in range(0, numY):
+				if Y[i] in leftLabels:
+					leftInd[i] = 1
+					allY[i] = -1 # -1 to go left
+
+				if Y[i] in rightLabels:
+					rightInd[i] = 1
+					allY[i] = 1 # 1 to go right
+			
+			allInd = leftInd | rightInd
+
+			thisX = X[allInd,:]
+			thisY = allY[allInd]
+
+			try:
+				n.getNodeInfo().fit(thisX, thisY) # For sklearn implementations
+			except:
+				n.getNodeInfo().train(thisX, thisY) # For implementations of binary.py
 
     def predict(self, X):
-        ### TODO: YOUR CODE HERE
-        util.raiseNotDefined()
+    	node = self.tree
+    	while not node.isLeaf:
+			probs = node.getNodeInfo().predict_proba(X.reshape(1,-1)) 
+			if  probs[0,1] > .5:
+				node = node.getRight()
+			else:
+				node = node.getLeft()
+        return node.getLabel()
 
     def predictAll(self, X):
         N,D = X.shape
