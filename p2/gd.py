@@ -25,17 +25,15 @@ def gd(func, grad, x0, numIter, stepSize):
 
     # begin iterations
     for iter in range(numIter):
+
         # compute the gradient at the current location
         g = grad(x)
 
-
         # compute the step size
-        eta = stepSize/sqrt(iter)
-
+        eta = stepSize/sqrt(iter+1)
 
         # step in the direction of the gradient
         x = x - eta*g
-
 
         # record the trajectory
         trajectory[iter+1] = func(x)
