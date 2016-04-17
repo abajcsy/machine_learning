@@ -48,7 +48,8 @@ class SquaredLoss(LossFunction):
         vector Y; the predicted values are in Yhat; compute the
         gradient of the loss associated with these predictions.
         """
-
+	
+	#print (Y - Yhat) * X.T
         return - sum((Y - Yhat) * X.T, axis=1)
 
 
@@ -63,8 +64,7 @@ class LogisticLoss(LossFunction):
         in Yhat; compute the loss associated with these predictions.
         """
 
-        ### TODO: YOUR CODE HERE
-        util.raiseNotDefined()
+        return sum(log(1 + exp(multiply(-Y,Yhat))))
 
 
     def lossGradient(self, X, Y, Yhat):
@@ -74,8 +74,7 @@ class LogisticLoss(LossFunction):
         gradient of the loss associated with these predictions.
         """
 
-        ### TODO: YOUR CODE HERE
-        util.raiseNotDefined()
+        return - sum(Y*exp(multiply(-Y,Yhat))/(1+exp(multiply(-Y,Yhat))) * X.T, axis=1)
 
 
 class HingeLoss(LossFunction):
@@ -89,8 +88,9 @@ class HingeLoss(LossFunction):
         in Yhat; compute the loss associated with these predictions.
         """
 
-        ### TODO: YOUR CODE HERE
-        util.raiseNotDefined()
+	l = 1 - multiply(Y, Yhat)
+	l[l>0] = 0
+        return sum(l)
 
     def lossGradient(self, X, Y, Yhat):
         """
@@ -99,8 +99,16 @@ class HingeLoss(LossFunction):
         gradient of the loss associated with these predictions.
         """
 
-        ### TODO: YOUR CODE HERE
-        util.raiseNotDefined()
+	z = zeros(Y.shape)    
+    	
+	
+	for i in range(0,len(Y)):
+		if (Y[i]*Yhat[i] <= 1):
+			z[i] = -Y[i]
+
+	z = z*X.T
+	#print z
+	return sum(z, axis=1)
 
 
 class LinearClassifier(BinaryClassifier):
@@ -162,6 +170,7 @@ class LinearClassifier(BinaryClassifier):
         Train a linear model using gradient descent, based on code in
         module gd.
         """
+	self.weights = zeros(X.shape[1])
 
         # get the relevant options
         lossFn   = self.opts['lossFunction']         # loss function to optimize
@@ -172,9 +181,17 @@ class LinearClassifier(BinaryClassifier):
         # define our objective function based on loss, lambd and (X,Y)
         def func(w):
             # should compute obj = loss(w) + (lambd/2) * norm(w)^2
-            Yhat = util.raiseNotDefined()    ### TODO: YOUR CODE HERE
+            Yhat = zeros(len(Y))
+	    for i in range(0,len(Y)):
+		#print w
+		#print sign(X[i,:].T*w)
+		#print X[i,:]
+		Yhat[i] = dot(w,X[i,:])
 
-            obj  = util.raiseNotDefined()    ### TODO: YOUR CODE HERE
+
+	    #Yhat[Yhat == 0] = 1
+
+            obj  = lossFn.loss(Y, Yhat) + (lambd/2) * norm(w) * norm(w)
 
             # return the objective
             return obj
@@ -182,9 +199,13 @@ class LinearClassifier(BinaryClassifier):
         # define our gradient function based on loss, lambd and (X,Y)
         def grad(w):
             # should compute gr = grad(w) + lambd * w
-            Yhat = util.raiseNotDefined()    ### TODO: YOUR CODE HERE
+            Yhat = zeros(len(Y))
+	    for i in range(0,len(Y)):
+		Yhat[i] = dot(w,X[i,:])
 
-            gr   = util.raiseNotDefined()    ### TODO: YOUR CODE HERE
+	    #Yhat[Yhat == 0] = 1
+
+            gr   = lossFn.lossGradient(X, Y, Yhat) + lambd * w
 
             return gr
 
