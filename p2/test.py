@@ -1,23 +1,24 @@
 import linear
 from imports import *
-f = linear.LinearClassifier({'lossFunction': linear.SquaredLoss(), 'lambda': 0, 'numIter': 100, 'stepSize': 0.5})
-print runClassifier.trainTestSet(f, datasets.TwoDAxisAligned)
+import datasets
 
-print f
+#a = linear.LinearClassifier({'lossFunction': linear.SquaredLoss(), 'lambda': 0, 'numIter': 100, 'stepSize': 0.5})
+#print runClassifier.trainTestSet(a, datasets.WineDataBinary)
+#print a
 
-mlGraphics.plotLinearClassifier(f, datasets.TwoDAxisAligned.X, datasets.TwoDAxisAligned.Y)
+b = linear.LinearClassifier({'lossFunction': linear.LogisticLoss(), 'lambda': 0, 'numIter': 100, 'stepSize': 0.5})
+print runClassifier.trainTestSet(b, datasets.WineDataBinary)
+print b
 
-show(False)
+#c = linear.LinearClassifier({'lossFunction': linear.HingeLoss(), 'lambda': 0, 'numIter': #100, 'stepSize': 0.5})
+#print runClassifier.trainTestSet(c, datasets.WineDataBinary)
+#print c
 
-f = linear.LinearClassifier({'lossFunction': linear.SquaredLoss(), 'lambda': 10, 'numIter': 100, 'stepSize': 0.5})
-print runClassifier.trainTestSet(f, datasets.TwoDAxisAligned)
-print f
+f = datasets.WineDataBinary()
+
+count = 1
+for word in f.words:
+	print str(count) + word 
+	count += 1
 
 
-f = linear.LinearClassifier({'lossFunction': linear.LogisticLoss(), 'lambda': 10, 'numIter': 100, 'stepSize': 0.5})
-print runClassifier.trainTestSet(f, datasets.TwoDDiagonal)
-print f
-
-f = linear.LinearClassifier({'lossFunction': linear.HingeLoss(), 'lambda': 1, 'numIter': 100, 'stepSize': 0.5})
-print runClassifier.trainTestSet(f, datasets.TwoDDiagonal)
-print f
