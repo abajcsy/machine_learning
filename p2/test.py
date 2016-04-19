@@ -22,12 +22,16 @@ f = datasets.WineDataBinary()
 print f.words[si[0]]
 print f.words[si[1]]
 print f.words[si[2]]
+print f.words[si[3]]
+print f.words[si[4]]
 
 print "-------------------------------"
 # Words indicative of class
 print f.words[si[-1]]
 print f.words[si[-2]]
 print f.words[si[-3]]
+print f.words[si[-4]]
+print f.words[si[-5]]
 
 
 
@@ -44,5 +48,7 @@ for word in f.words:
 	print str(count) + word 
 	count += 1
 '''
+
+print f.words
 
 
