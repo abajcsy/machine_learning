@@ -60,7 +60,7 @@ Negative values of the step size cause the algorithm to diverge (see Figure ~\re
 \end{figure}
 
 	\item[\textbf{WU4}] 
-Using the function x**3+x**10-x**2, we have a non-convex univariate optimization problem. Plot the function you're trying to minimize and show two runs of gd, one where it gets caught in a local minimum and one where it manages to make it to a global minimum. (Use different starting points to accomplish this.)		
+Come up with a non-convex univariate optimization problem. Plot the function you're trying to minimize and show two runs of gd, one where it gets caught in a local minimum and one where it manages to make it to a global minimum. (Use different starting points to accomplish this.)		
 
 
 	\item[\textbf{WU5}] 
