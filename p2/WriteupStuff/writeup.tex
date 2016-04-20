@@ -63,9 +63,10 @@ Using the function $x^3+x^{10}-x^2$, we have a non-convex univariate optimizatio
 
 \begin{figure}[htp]
 \centering
+\includegraphics[width=.5\textwidth]{gd_graph.png}
 \includegraphics[width=.5\textwidth]{gd_local_min.png}\hfill
-\includegraphics[width=.5\textwidth]{gd_global_min.png}
-\caption{Gradient Descent on $x^3+x^{10}-x^2$ that gets trapped at local min (left) or finds global min (right)}
+\includegraphics[width=.5\textwidth]{gd_global_min.png}\hfill
+\caption{Original function (top) and gradient Descent on $x^3+x^{10}-x^2$ that gets trapped at local min (left) or finds global min (right)}
 \label{fig:WU3}
 \end{figure}
 
@@ -78,7 +79,7 @@ Using the function $x^3+x^{10}-x^2$, we have a non-convex univariate optimizatio
 		
 	\end{enumerate}
 	
-	The logistic loss function produced the best results, as shown above. The words corresponding to the weights with the greatest negative value are ``tannis", ``black", ``dark", ``cherry", and ``blackberry". The association with high negative weights means that these words are more indicative of class -1 than any other words. The words corresponding to the weights with the greatest positive values are ``citrus", ``crisp", ``lime", ``acidity", and ``tropical". The association with high positive weights means that these words are more indicative of class 1 than any other words. This group of words is the best group to make predictions. In this context, ``best" means that using only these words as features, one would expect the highest accuracy over using any other group of words. The results for the positive words agree with the words indicative of Sauvignon-Blanc from \textbf{WU1}.
+The logistic loss function produced the best results, as shown above. The words corresponding to the weights with the greatest negative value are ``tannis", ``black", ``dark", ``cherry", and ``blackberry". The association with high negative weights means that these words are more indicative of class -1 than any other words. The words corresponding to the weights with the greatest positive values are ``citrus", ``crisp", ``lime", ``acidity", and ``tropical". The association with high positive weights means that these words are more indicative of class 1 than any other words. This group of words is the best group to make predictions. In this context, ``best" means that using only these words as features, one would expect the highest accuracy over using any other group of words. The results for the positive words agree with the words indicative of Sauvignon-Blanc from \textbf{WU1}.
 	
 	\end{enumerate}
 
