@@ -59,7 +59,7 @@ Negative values of the step size cause the algorithm to diverge (see Figure ~\re
 \end{figure}
 
 	\item[\textbf{WU4}] 
-Using the function $x^3+x^{10}-x^2$, we have a non-convex univariate optimization problem with local minima at about (0.606, -0.138) and global minima at (-0.911,-1.192). Looking at Figure ~\ref{fig:W3}, we see the first run where it gets caught in a local minimum and the second run  where it manages to make it to a global minimum.
+Using the function $x^3+x^{10}-x^2$, we have a non-convex univariate optimization problem with local minima at about (0.606, -0.138) and global minima at (-0.911,-1.192). Looking at Figure ~\ref{fig:WU3}, we see the first run where it gets caught in a local minimum and the second run  where it manages to make it to a global minimum.
 
 \begin{figure}[htp]
 \centering
@@ -72,90 +72,15 @@ Using the function $x^3+x^{10}-x^2$, we have a non-convex univariate optimizatio
 	\item[\textbf{WU5}] 
 	
 	\begin{enumerate}
-		\item[(A)] Squared Loss with lambda = 1, numIterations = 8000, and stepSize = .0125: Training accuracy 0.506073, test accuracy 0.527675
-		\item[(B)] Logistic Loss with lambda = 1, numIterations = 100, and stepSize = .05: Training accuracy 0.995951, test accuracy 0.97417
-		\item[(C)] Hinge Loss with lambda = 1, numIterations = 100, and stepSize = .05: Training accuracy 0.753036, test accuracy 0.686347
+		\item[(A)] Squared Loss with \texttt{lambda = 1}, \texttt{numIterations = 8000}, and \texttt{stepSize = .0125}: Training accuracy 0.506073, test accuracy 0.527675
+		\item[(B)] Logistic Loss with \texttt{lambda = 1}, \texttt{numIterations = 100}, and \texttt{stepSize = .05}: Training accuracy 0.995951, test accuracy 0.97417
+		\item[(C)] Hinge Loss with \texttt{lambda = 1}, \texttt{numIterations = 100}, and \texttt{stepSize = .05}: Training accuracy 0.753036, test accuracy 0.686347 
 		
 	\end{enumerate}
 	
-		
-	\item[\textbf{WU6}]
+	The logistic loss function produced the best results, as shown above. The words corresponding to the weights with the greatest negative value are ``tannis", ``black", ``dark", ``cherry", and ``blackberry". The association with high negative weights means that these words are more indicative of class -1 than any other words. The words corresponding to the weights with the greatest positive values are ``citrus", ``crisp", ``lime", ``acidity", and ``tropical". The association with high positive weights means that these words are more indicative of class 1 than any other words. This group of words is the best group to make predictions. In this context, ``best" means that using only these words as features, one would expect the highest accuracy over using any other group of words. The results for the positive words agree with the words indicative of Sauvignon-Blanc from \textbf{WU1}.
 	
 	\end{enumerate}
-	%%
-	%%\begin{figure} [h!]
-	%%	\begin{subfigure} [h!]{.4\textwidth}
-%%		\includegraphics[scale = .45]{LC_k1.png}
-%%		\end{subfigure}
-%%		\hfill
-%%		\begin{subfigure} [h!]{.4\textwidth}
-%%		\includegraphics[scale = .45]{LC_k2.png}
-%%		\\
-%%		\begin{subfigure} [h!]{.4\textwidth}
-%%		\includegraphics[scale = .45]{LC_k5.png}
-%%		\end{subfigure}
-%%		\begin{subfigure} [h!]{.4\textwidth}
-%%		\includegraphics[scale = .45]{LC_k10.png}
-%%		\end{subfigure}
-%%		\caption{Learning curves for various $K$ values}
-%%		\label{k_figs}
-%%	\end{figure}
-	
-	
-%%	\FloatBarrier	
 
-%%	\begin{figure} [h!]
-%%	\centering
-%%		\begin{subfigure} [h!]{.4\textwidth}
-%%		\includegraphics[scale = .45]{LC_eps5_000000.png}
-%%		\end{subfigure}
-%%		\hfill
-%%		\begin{subfigure} [h!]{.4\textwidth}
-%%		\includegraphics[scale = .45]{LC_eps10_000000.png}
-%%		\end{subfigure}
-%%		\\
-%%		\begin{subfigure} [h!]{.4\textwidth}
-%%		\includegraphics[scale = .45]{LC_eps15_000000.png}
-%%		\end{subfigure}
-%%		\hfill
-%%		\begin{subfigure} [h!]{.4\textwidth}
-%%		\includegraphics[scale = .45]{LC_eps20_000000.png}
-%%		\end{subfigure}
-%%		\caption{Learning curves for various $\epsilon$ values}
-%%		\label{eps_figs}
-%%	\end{figure}
-	
-%%	\clearpage
-	
-%%	\begin{figure} [h!]
-%%		\centering
-%%		\includegraphics[scale = .65]{AllDims.png}
-%%		\caption{Pairwise distances using all 784 dimensions}
-%%		\label{alldims_fig}
-%%	\end{figure}
-		
-%%	\begin{figure} [h!]
-%%		\centering
-%%		\includegraphics[scale = .65]{Subsampled.png}
-%%		\caption{Pairwise distances using subsampled dimensions}
-%%		\label{subsample_fig}
-%%	\end{figure}
-	
-%%	\FloatBarrier
-	
-%%	\begin{figure} [h!]
-%%		\centering
-%%		\includegraphics[scale = .65]{LC_perceptron.png}
-%%		\caption{Learning curve for perceptron using 5 epochs}
-%%		\label{lc_percept_fig}
-%%	\end{figure}
-		
-%%	\begin{figure} [h!]
-%%		\centering
-%%		\includegraphics[scale = .65]{Epochs_train_test.png}
-%%		\caption{Effect of number of epochs on test/train accuracy}
-%%		\label{epoch_tt_fig}
-%%	\end{figure}
-	
 \end{document}
 
