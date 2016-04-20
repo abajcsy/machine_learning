@@ -49,21 +49,25 @@ Negative values of the step size cause the algorithm to diverge (see Figure ~\re
 \pagebreak
 
 \begin{figure}[htp]
-
 \centering
 \includegraphics[width=.5\textwidth]{gd_ss_neg5.png}\hfill
 \includegraphics[width=.5\textwidth]{gd_ss_0.png}\hfill
 \includegraphics[width=.5\textwidth]{gd_ss_point2.png}\hfill
 \includegraphics[width=.5\textwidth]{gd_ss_point5.png}
-
 \caption{Gradient Descent performed with 100 iterations with step sizes -5, 0, 0.2, and 0.5.}
 \label{fig:WU2}
-
 \end{figure}
 
 	\item[\textbf{WU4}] 
-Using the function x**3+x**10-x**2, we have a non-convex univariate optimization problem. Plot the function you're trying to minimize and show two runs of gd, one where it gets caught in a local minimum and one where it manages to make it to a global minimum. (Use different starting points to accomplish this.)		
+Using the function $x^3+x^{10}-x^2$, we have a non-convex univariate optimization problem with local minima at about (0.606, -0.138) and global minima at (-0.911,-1.192). Looking at Figure ~\ref{fig:W3}, we see the first run where it gets caught in a local minimum and the second run  where it manages to make it to a global minimum.
 
+\begin{figure}[htp]
+\centering
+\includegraphics[width=.5\textwidth]{gd_local_min.png}\hfill
+\includegraphics[width=.5\textwidth]{gd_global_min.png}
+\caption{Gradient Descent on $x^3+x^{10}-x^2$ that gets trapped at local min (left) or finds global min (right)}
+\label{fig:WU3}
+\end{figure}
 
 	\item[\textbf{WU5}] 
 		
