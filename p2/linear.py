@@ -187,7 +187,7 @@ class LinearClassifier(BinaryClassifier):
 			for i in range(0,len(Y)):
 				Yhat[i] = dot(w,X[i,:])
 
-			obj = lossFn.loss(Y, Yhat) + (lambd/2) * dot(w,w)
+			obj = lossFn.loss(Y, Yhat) + (lambd/2) * pow(norm(w),2)
 
 			# return the objective
 			return obj
