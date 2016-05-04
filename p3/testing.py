@@ -1,0 +1,45 @@
+from numpy import *
+import dr
+import datasets
+from matplotlib.pyplot import *
+import util
+'''
+A = array([[1,1,1],[2,3,4]])
+
+(P,Z,evals) = dr.pca(A,2)
+print evals
+
+
+Si = util.sqrtm(array([[3,2],[2,4]]))
+x = dot(random.randn(1000,2), Si)
+print dot(x.T,x) / real(x.shape[0])
+
+(P,Z,evals) = dr.pca(x, 2)
+print Z
+print evals
+'''
+
+(X,Y) = datasets.loadDigits()
+(P,Z,evals) = dr.pca(X, 784)
+#print evals
+
+# Plot the eigenvalues here
+normalized_evals = evals / sum(evals)
+garbage_x = range(1, len(normalized_evals)+1);
+
+plot(garbage_x, normalized_evals)
+ylabel('eigenvalue')
+title('Normalized Eigenvalues')
+savefig('normalized_eigenvalues.png')
+
+# variance stuff
+cs = cumsum(normalized_evals, dtype = float)
+
+# 90% variance
+print nonzero(cs > .9)[0][0]
+# 95% variance
+print nonzero(cs > .95)[0][0]
+
+# Plotting digits
+util.drawDigits(Z.T[:50,:], arange(50))
+savefig('eigvects.png')
