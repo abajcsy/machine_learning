@@ -1,0 +1,15 @@
+Greatest Negative Words, not indicative of the class:
+tannis
+black
+dark
+cherry
+blackberry
+
+Greatest Positive Words,indicative of the class:
+citrus
+crisp
+lime
+acidity
+tropical
+
+To find the 5 most positive and 5 most negative, we took the weight vector and found the weights with the top 5 largest and 5 lowest values and then matched their indices with the list of words.
