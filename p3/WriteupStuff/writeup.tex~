@@ -18,8 +18,8 @@
 
 \graphicspath{{../Figures/}}
 
-\title{Project 2 Writeup}
-\date{04/20/2016}
+\title{Project 3 Writeup}
+\date{05/10/2016}
 \author{Andrea Bajcsy \and Michelle Cody \and Charles Parker }
 
 \begin{document}
@@ -28,120 +28,42 @@
 	\begin{enumerate}
 	
 	\item[\textbf{WU1}]
-	
-	\begin{enumerate}
-		\item[(A)] 	 The words most indicative of being Sauvignon-Blanc are ``citrus", ``lime", and ``grapefruit" for OAA and ``citrus", ``"crisp", and ``"lime" for AVA. The words most indicative of not being Sauvignon-Blanc are ``apple" and ``flavors" for OAA and ``enjoy", ``warm", and ``apple" for AVA.
-		
-		The words most indicative of being Pinot-Noir are ``cherry" for OAA and ``acidity" for AVA. The words most indicative of not being Pinot-Noir are ``cassis" and ``raspberries" for OAA and `cassis" and ``crisp" for AVA.
-		
-		\item[(B)] The OAA accuracy is 37.29\%. The training time is 0.372 seconds.  The AVA accuracy is 26.15\%.  The training time is 0.387 seconds. The words that suggest Viognier is one of your least favorite wines are ``lovely" and ``enjoy" since the presence of these words indicate that the wine is not Viognier.
-		
-		\item[(C)] The accuracy for OAA using zero/one predictions is 24.30\%. The accuracy for AVA using zero/one predictions is 26.35\%. The OAA accuracy is much worse than the confidence predictions. Using confidence improves the accuracy by about 50\%. The AVA accuracy is roughly the same for zero/one predictions and confidence predictions. The difference could easily be explained by the random choices made by sklearn.
-	\end{enumerate}
-	
+Plot the normalized eigenvalues (include the plot in your writeup). How many eigenvectors do you have to include before you've accounted for 90\% of the variance? 95\%? (Hint: see function cumsum.)
 
-	\item[\textbf{WU2}] The test accuracy you get with a balanced tree on the WineData using a DecisionTreeClassifier with max depth 3 is 30.89\%.
+	\item[\textbf{WU2}] Do these look like digits? Should they? Why or why not? (Include the plot in your write-up.)
 	
 	\item[\textbf{WU3}] 
-Negative values of the step size cause the algorithm to diverge (see Figure ~\ref{fig:WU2} for example with step size -5), 0 is constant, and 0.2 converges. We can see in Figure ~\ref{fig:WU2} that 0.5 finds the optimum in one step.
-\pagebreak
+Yes, you could have fewer support vectors (e.g. 2 vectors). Currently, two of the SV's represent the blue class and one represents the red class (and all of the SV's have the same margin). We could remove one of the SV's of the blue class and still get the same output. 
+
+	\item[\textbf{WU4}]
+You get these little blobs because you are summing up the normal distributions around each point. As we turn up gamma, the variance increases and the kernel essentially vanishes. When we up gamma up to 400, we get a little decision boundary around each example (i.e. each decision boundary surrounds exactly one example) (see Figure \ref{fig:WU4}).
 
 \begin{figure}[htp]
-
 \centering
-\includegraphics[width=.5\textwidth]{gd_ss_neg5.png}\hfill
-\includegraphics[width=.5\textwidth]{gd_ss_0.png}\hfill
-\includegraphics[width=.5\textwidth]{gd_ss_point2.png}\hfill
-\includegraphics[width=.5\textwidth]{gd_ss_point5.png}
-
-\caption{Gradient Descent performed with 100 iterations with step sizes -5, 0, 0.2, and 0.5.}
-\label{fig:WU2}
-
+\includegraphics[width=.5\textwidth]{wu4.png}
+\caption{SVM with RBF kernel using gamma = 450.}
+\label{fig:WU4}
 \end{figure}
 
-	\item[\textbf{WU4}] 
-Come up with a non-convex univariate optimization problem. Plot the function you're trying to minimize and show two runs of gd, one where it gets caught in a local minimum and one where it manages to make it to a global minimum. (Use different starting points to accomplish this.)		
+	\item[\textbf{WU5}]
+There are a lot of red support vectors on the blue side of the decision boundary because this data is not linearly separable. 
 
-
-	\item[\textbf{WU5}] 
-		
 	\item[\textbf{WU6}]
-	
-	\end{enumerate}
-	%%
-	%%\begin{figure} [h!]
-	%%	\begin{subfigure} [h!]{.4\textwidth}
-%%		\includegraphics[scale = .45]{LC_k1.png}
-%%		\end{subfigure}
-%%		\hfill
-%%		\begin{subfigure} [h!]{.4\textwidth}
-%%		\includegraphics[scale = .45]{LC_k2.png}
-%%		\\
-%%		\begin{subfigure} [h!]{.4\textwidth}
-%%		\includegraphics[scale = .45]{LC_k5.png}
-%%		\end{subfigure}
-%%		\begin{subfigure} [h!]{.4\textwidth}
-%%		\includegraphics[scale = .45]{LC_k10.png}
-%%		\end{subfigure}
-%%		\caption{Learning curves for various $K$ values}
-%%		\label{k_figs}
-%%	\end{figure}
-	
-	
-%%	\FloatBarrier	
+The 0/1 loss on the training data is not zero because it misclassifies one blue point (in lower right hand corner). The hinge loss on the training data is also not zero because there are many points inside the margin.
 
-%%	\begin{figure} [h!]
-%%	\centering
-%%		\begin{subfigure} [h!]{.4\textwidth}
-%%		\includegraphics[scale = .45]{LC_eps5_000000.png}
-%%		\end{subfigure}
-%%		\hfill
-%%		\begin{subfigure} [h!]{.4\textwidth}
-%%		\includegraphics[scale = .45]{LC_eps10_000000.png}
-%%		\end{subfigure}
-%%		\\
-%%		\begin{subfigure} [h!]{.4\textwidth}
-%%		\includegraphics[scale = .45]{LC_eps15_000000.png}
-%%		\end{subfigure}
-%%		\hfill
-%%		\begin{subfigure} [h!]{.4\textwidth}
-%%		\includegraphics[scale = .45]{LC_eps20_000000.png}
-%%		\end{subfigure}
-%%		\caption{Learning curves for various $\epsilon$ values}
-%%		\label{eps_figs}
-%%	\end{figure}
-	
-%%	\clearpage
-	
-%%	\begin{figure} [h!]
-%%		\centering
-%%		\includegraphics[scale = .65]{AllDims.png}
-%%		\caption{Pairwise distances using all 784 dimensions}
-%%		\label{alldims_fig}
-%%	\end{figure}
-		
-%%	\begin{figure} [h!]
-%%		\centering
-%%		\includegraphics[scale = .65]{Subsampled.png}
-%%		\caption{Pairwise distances using subsampled dimensions}
-%%		\label{subsample_fig}
-%%	\end{figure}
-	
-%%	\FloatBarrier
-	
-%%	\begin{figure} [h!]
-%%		\centering
-%%		\includegraphics[scale = .65]{LC_perceptron.png}
-%%		\caption{Learning curve for perceptron using 5 epochs}
-%%		\label{lc_percept_fig}
-%%	\end{figure}
-		
-%%	\begin{figure} [h!]
-%%		\centering
-%%		\includegraphics[scale = .65]{Epochs_train_test.png}
-%%		\caption{Effect of number of epochs on test/train accuracy}
-%%		\label{epoch_tt_fig}
-%%	\end{figure}
-	
+	\item[\textbf{WU7}]
+When training an RBF kernel on this data, the smallest gamma for which we could get a good decision boundary was gamma = 2. A good decision boundary is defined by a low number of points being used as support vectors and a wider margin (see Figure \ref{}). 
+
+\begin{figure}[htp]
+\centering
+\includegraphics[width=.5\textwidth]{wu7.png}
+\caption{Complex dataset with RBF kernel using gamma = 2.}
+\label{fig:WU7}
+\end{figure}
+
+\pagebreak
+
+\end{enumerate}
+
 \end{document}
 
