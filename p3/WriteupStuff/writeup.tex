@@ -27,10 +27,27 @@
 	
 	\begin{enumerate}
 	
-	\item[\textbf{WU1}]
-Plot the normalized eigenvalues (include the plot in your writeup). How many eigenvectors do you have to include before you've accounted for 90\% of the variance? 95\%? (Hint: see function cumsum.)
+	\item[\textbf{WU1}] The normalized eigenvalues are shown in Figure \ref{fig:WU1} below. One needs 81 eigenvectors to account for 90\% of the variance and 135 eigenvectors to account for 95\% of the variance.
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=.5\textwidth]{normalized_eigenvalues.png}
+		\caption{Normalized eigenvalues of the covariance matrix for the digits data}
+		\label{fig:WU1}
+	\end{figure}
 
-	\item[\textbf{WU2}] Do these look like digits? Should they? Why or why not? (Include the plot in your write-up.)
+	\FloatBarrier
+
+	\item[\textbf{WU2}] The plots of the top 50 eigenvectors are shown in Figure \ref{fig:WU2} below. Besides the first few eigenvectors (those corresponding to labels 0 - 5) which very roughly resemble digits, the images do not look like digits. They should not look like digits because the eigenvectors are the directions of most variance. In terms of the image, this corresponds to the weighted combination of pixels at which there is the highest variance. Since all of the digits are represented in the set and some digits share elements of appearance (such as a vertical bar at the center of the image), it would be very unlikely that a direction of large variance would correspond exactly to one particular digit.
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=.5\textwidth]{eigvects.png}
+		\caption{Top 50 eigenvectors }
+		\label{fig:WU2}
+	\end{figure}
+	
+	\FloatBarrier
 	
 	\item[\textbf{WU3}] 
 Yes, you could have fewer support vectors (e.g. 2 vectors). Currently, two of the SV's represent the blue class and one represents the red class (and all of the SV's have the same margin). We could remove one of the SV's of the blue class and still get the same output. 
