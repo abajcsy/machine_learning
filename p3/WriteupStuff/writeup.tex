@@ -50,15 +50,15 @@
 	\FloatBarrier
 	
 	\item[\textbf{WU3}] 
-Yes, you could have fewer support vectors (e.g. 2 vectors). Currently, two of the SV's represent the blue class and one represents the red class (and all of the SV's have the same margin). We could remove one of the SV's of the blue class and still get the same output. 
+No, you could not have fewer support vectors. The 3rd support vector included ensures that the line symbolizing the decision boundary has the same margin from each of the three points and is therefore the one correct decision boundary for these input parameters. With only 2 support vectors, there are infinitely many decision boundaries that maintain the margin. These decision boundaries are those that pass through the midpoint of the line between the two support vectors.
 
 	\item[\textbf{WU4}]
-You get these little blobs because you are summing up the normal distributions around each point. As we turn up gamma, the variance increases and the kernel essentially vanishes. When we up gamma up to 400, we get a little decision boundary around each example (i.e. each decision boundary surrounds exactly one example) (see Figure \ref{fig:WU4}).
+You get these little blobs because you are summing up the normal distributions around each point. As we turn up gamma, the variance increases and the kernel essentially vanishes. When we up gamma up to 2000, we get a little decision boundary around each example (i.e. each decision boundary surrounds exactly one example) (see Figure \ref{fig:WU4}).
 
 \begin{figure}[htp]
 \centering
 \includegraphics[width=.5\textwidth]{wu4.png}
-\caption{SVM with RBF kernel using gamma = 450.}
+\caption{SVM with RBF kernel using gamma = 2000.}
 \label{fig:WU4}
 \end{figure}
 

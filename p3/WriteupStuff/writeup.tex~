@@ -27,21 +27,38 @@
 	
 	\begin{enumerate}
 	
-	\item[\textbf{WU1}]
-Plot the normalized eigenvalues (include the plot in your writeup). How many eigenvectors do you have to include before you've accounted for 90\% of the variance? 95\%? (Hint: see function cumsum.)
+	\item[\textbf{WU1}] The normalized eigenvalues are shown in Figure \ref{fig:WU1} below. One needs 81 eigenvectors to account for 90\% of the variance and 135 eigenvectors to account for 95\% of the variance.
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=.5\textwidth]{normalized_eigenvalues.png}
+		\caption{Normalized eigenvalues of the covariance matrix for the digits data}
+		\label{fig:WU1}
+	\end{figure}
 
-	\item[\textbf{WU2}] Do these look like digits? Should they? Why or why not? (Include the plot in your write-up.)
+	\FloatBarrier
+
+	\item[\textbf{WU2}] The plots of the top 50 eigenvectors are shown in Figure \ref{fig:WU2} below. Besides the first few eigenvectors (those corresponding to labels 0 - 5) which very roughly resemble digits, the images do not look like digits. They should not look like digits because the eigenvectors are the directions of most variance. In terms of the image, this corresponds to the weighted combination of pixels at which there is the highest variance. Since all of the digits are represented in the set and some digits share elements of appearance (such as a vertical bar at the center of the image), it would be very unlikely that a direction of large variance would correspond exactly to one particular digit.
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=.5\textwidth]{eigvects.png}
+		\caption{Top 50 eigenvectors }
+		\label{fig:WU2}
+	\end{figure}
+	
+	\FloatBarrier
 	
 	\item[\textbf{WU3}] 
-Yes, you could have fewer support vectors (e.g. 2 vectors). Currently, two of the SV's represent the blue class and one represents the red class (and all of the SV's have the same margin). We could remove one of the SV's of the blue class and still get the same output. 
+No, you could not have fewer support vectors. The 3rd support vector included ensures that the line symbolizing the decision boundary has the same margin from each of the three points and is therefore the one correct decision boundary for these input parameters. With only 2 support vectors, there are infinitely many decision boundaries that maintain the margin. These decision boundaries are those that pass through the midpoint of the line between the two support vectors.
 
 	\item[\textbf{WU4}]
-You get these little blobs because you are summing up the normal distributions around each point. As we turn up gamma, the variance increases and the kernel essentially vanishes. When we up gamma up to 400, we get a little decision boundary around each example (i.e. each decision boundary surrounds exactly one example) (see Figure \ref{fig:WU4}).
+You get these little blobs because you are summing up the normal distributions around each point. As we turn up gamma, the variance increases and the kernel essentially vanishes. When we up gamma up to 2000, we get a little decision boundary around each example (i.e. each decision boundary surrounds exactly one example) (see Figure \ref{fig:WU4}).
 
 \begin{figure}[htp]
 \centering
 \includegraphics[width=.5\textwidth]{wu4.png}
-\caption{SVM with RBF kernel using gamma = 450.}
+\caption{SVM with RBF kernel using gamma = 2000.}
 \label{fig:WU4}
 \end{figure}
 
@@ -52,7 +69,7 @@ There are a lot of red support vectors on the blue side of the decision boundary
 The 0/1 loss on the training data is not zero because it misclassifies one blue point (in lower right hand corner). The hinge loss on the training data is also not zero because there are many points inside the margin.
 
 	\item[\textbf{WU7}]
-When training an RBF kernel on this data, the smallest gamma for which we could get a good decision boundary was gamma = 2. A good decision boundary is defined by a low number of points being used as support vectors and a wider margin (see Figure \ref{}). 
+When training an RBF kernel on this data, the smallest gamma for which we could get a good decision boundary was gamma = 2. A good decision boundary is defined by a low number of points being used as support vectors and a wider margin (see Figure \ref{fig:WU7}). 
 
 \begin{figure}[htp]
 \centering
